@@ -86,7 +86,6 @@ def test_algo():
 
 
 if __name__ == '__main__':
-    # input = sys.stdin.read()
-    # n = int(input)
-    # print(fibonacci_sum_algo(100))
-    test_algo()
+    input = sys.stdin.read()
+    n = int(input)
+    print(fibonacci_sum_algo(n))

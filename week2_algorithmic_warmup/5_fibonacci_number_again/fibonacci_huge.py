@@ -84,7 +84,6 @@ def test_get_fibonacci_huge_algo():
 
 
 if __name__ == '__main__':
-    # input = sys.stdin.read();
-    # n, m = map(int, input.split())
-    print(get_fibonacci_huge_algo(58, 10))
-    test_get_fibonacci_huge_algo()
+    input = sys.stdin.read();
+    n, m = map(int, input.split())
+    print(get_fibonacci_huge_algo(n, m))

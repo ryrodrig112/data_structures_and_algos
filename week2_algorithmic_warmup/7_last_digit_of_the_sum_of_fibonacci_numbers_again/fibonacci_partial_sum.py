@@ -98,6 +98,6 @@ def test_algo():
 
 
 if __name__ == '__main__':
-    # input = sys.stdin.read();
-    # from_, to = map(int, input.split())
-    test_algo()
+    input = sys.stdin.read();
+    from_, to = map(int, input.split())
+    print(fibonacci_partial_sum_algo(from_, to))
