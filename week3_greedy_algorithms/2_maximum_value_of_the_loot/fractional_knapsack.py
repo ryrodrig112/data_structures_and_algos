@@ -23,7 +23,7 @@ def get_optimal_value(capacity, weights, values):
             del weights[idx_most_valuable]
         elif weights[idx_most_valuable] >= capacity:
             # take capacity
-            value = capacity * value_per_weight[idx_most_valuable]
+            value = round(capacity * value_per_weight[idx_most_valuable], 4)
             capacity = 0
 
     return value + get_optimal_value(capacity, weights, values)
