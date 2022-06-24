@@ -13,6 +13,5 @@ def test_algo():
     assert get_change(28), "Given example, returned {}".format(get_change(6))
 
 if __name__ == '__main__':
-    test_algo()
-    # m = int(sys.stdin.read())
-    # print(get_change(m))
+    m = int(sys.stdin.read())
+    print(get_change(m))
