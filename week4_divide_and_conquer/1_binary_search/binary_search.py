@@ -24,15 +24,15 @@ def test_algo():
     assert binary_search([1, 5, 8, 12, 13], [8, 1, 23, 1, 11]) == [2, 0, -1, 0, -1], binary_search([1,5,8,12,13,], [8, 1, 23, 1, 11])
 
 if __name__ == '__main__':
-    test_algo()
-    # num_keys = int(input())
-    # input_keys = list(map(int, input().split()))
-    # assert len(input_keys) == num_keys
-    #
-    # num_queries = int(input())
-    # input_queries = list(map(int, input().split()))
-    # assert len(input_queries) == num_queries
-    #
-    # for q in input_queries:
+    # test_algo()
+    num_keys = int(input())
+    input_keys = list(map(int, input().split()))
+    assert len(input_keys) == num_keys
 
-    #     print(binary_search(input_keys, q), end=' ')
+    num_queries = int(input())
+    input_queries = list(map(int, input().split()))
+    assert len(input_queries) == num_queries
+
+    for q in input_queries:
+
+        print(binary_search(input_keys, q), end=' ')
