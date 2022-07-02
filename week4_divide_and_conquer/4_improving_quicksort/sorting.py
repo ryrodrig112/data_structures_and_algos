@@ -27,10 +27,15 @@ def randomized_quick_sort(a, l, r):
     randomized_quick_sort(a, l, m - 1);
     randomized_quick_sort(a, m + 1, r);
 
+def test_algo():
+    qs_test = randomized_quick_sort([2, 3, 9, 2, 2], 0, 4)
+    assert  qs_test== [2,2,2,3, 9], qs_test
+
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    n, *a = list(map(int, input.split()))
-    randomized_quick_sort(a, 0, n - 1)
-    for x in a:
-        print(x, end=' ')
+    # input = sys.stdin.read()
+    # n, *a = list(map(int, input.split()))
+    # randomized_quick_sort(a, 0, n - 1)
+    # for x in a:
+    #     print(x, end=' ')
+    test_algo()
