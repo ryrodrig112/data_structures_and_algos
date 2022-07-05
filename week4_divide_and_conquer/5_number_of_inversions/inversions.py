@@ -1,55 +1,67 @@
 import sys
 
 
-def merge(b, c):
-    print("b: {}, c: {}".format(b,c))
+def merge(l1, l2, inversion_tracker):
+    num_inversions = sum(inversion_tracker)
+    print("Merge b: {} and c: {}".format(l1,l2))
     d = []
-    while b and c:
-        print(b, c)
-        b1 = b[0]
-        c1 = c[0]
-        if b1 <= c1:
-            d.append(b1)
-            b.pop(0)
+    while l1 and l2:
+        l1_1 = l1[0]
+        l2_1 = l2[0]
+        if l1_1 <= l2_1:
+            d.append(l1_1)
+            l1.pop(0)
         else:
-            d.append(c1)
-            c.pop(0)
-    if b:
-        d += b
-    elif c:
-        d += c
+            inversion_tracker[num_inversions] = 1
+            print("Inversion, {} > {}! New tracker{}".format(l1_1, l2_1, inversion_tracker))
+            d.append(l2_1)
+            l2.pop(0)
+    if l1:
+        d += l1
+    elif l2:
+        d += l2
     print("d: {}".format(d))
-    return d
+    print("")
+    return d, inversion_tracker
+
+
+def merge_sort(a, b, left, right):
+    print("a: {}, inversions: {}, left: {}, right: {}".format(a, b, left, right))
+    array = a[left:right]
+    print("array: {}".format(array))
+    print("inversions so far: {}".format(sum(b)))
+    if len(array) <= 1:
+        return array, b
+    m = (left + right)//2
+    print("left half: {}". format(a[left:m]))
+    print("right half: {}".format(a[m: right]))
+    print("")
+    l1, b = merge_sort(a, b, left, m)
+    l2, b = merge_sort(a, b, m, right)
+
+    a_prime, b = merge(l1, l2, b)
+    return a_prime, b
 
 
 def get_number_of_inversions(a, b, left, right):
-    number_of_inversions = 0
-    if right - left <= 1:
-        return a
-    ave = (left + right) // 2
-    b = get_number_of_inversions(a, b, left, ave)
-    c = get_number_of_inversions(a, b, ave, right)
-    d = merge(b, c)
-    return d
 
-
-def merge_sort(a):
-    print("a: {}".format(a))
-    if len(a) <= 1:
-        return a
-    m = len(a)//2
-    b = merge_sort(a[0:m])
-    c = merge_sort(a[m:])
-    a_prime = merge(b, c)
-    return a_prime
+    sorted_list, inversion_tracker = merge_sort(a, b, left, right)
+    num_inversions = sum(inversion_tracker)
+    return num_inversions
 
 
 def test_algo():
+    sorted_list, inversions = merge_sort([1, 3, 2, 4], [0, 0, 0, 0], 0, 4)
+    assert sorted_list == [1,2,3,4], sorted_list
 
-    # assert merge_sort([1, 3, 2, 4], [0, 0, 0, 0], 0, 4) == [1, 2, 3, 4],\
-    #     merge_sort([1, 3, 2, 4], [0], 0, 4)
-    assert merge_sort([1,3,2,4]) == [1,2,3,4], merge_sort([1,3,2,4])
+    tc1 = get_number_of_inversions([1, 3, 2, 4], [0, 0, 0, 0], 0, 4)
+    assert tc1 == 1, tc1
 
+    tc2= get_number_of_inversions([1, 3, 2, 1, 4], [0, 0, 0, 0], 0, 5)
+    assert tc2 == 2, tc2
+
+    tc3 = get_number_of_inversions([2,3,9,2,9], [0,0,0,0,0], 0, 5)
+    assert tc3 == 2, tc3
 
 if __name__ == '__main__':
     # input = sys.stdin.read()
@@ -57,5 +69,6 @@ if __name__ == '__main__':
     # print(n)
     # b = n * [0]
     # print(b)
-    # print(get_number_of_inversions(a, b, 0, len(a)))
+    # print(get
+    # _number_of_inversions(a, b, 0, len(a))
     test_algo()
